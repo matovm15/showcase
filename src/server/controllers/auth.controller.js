@@ -47,7 +47,7 @@ const verifyEmail = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
-export {
+export default {
   register,
   login,
   logout,

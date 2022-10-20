@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import swaggerJsdoc from('swagger-jsdoc');
-import swaggerUi from('swagger-ui-express');
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 import swaggerDef from  '../../docs/swaggerDef.js';
 
 const router = Router();
 
 const specs = swaggerJsdoc({
-  swaggerDef,
+  definition: swaggerDef,
   apis: ['src/docs/*.yml', 'src/routes/v1/*.js'],
 });
 
@@ -18,4 +18,4 @@ router.get(
   })
 );
 
-module.exports = router;
+export default router;

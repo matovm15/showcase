@@ -80,7 +80,8 @@ const deleteUserById = async (userId) => {
   return user;
 };
 
-export default {
+
+export const userService = {
   createUser,
   queryUsers,
   getUserById,

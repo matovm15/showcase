@@ -16,7 +16,8 @@ router
   .patch(auth('manageUsers'), validate(userValidation.updateUser), updateUser)
   .delete(auth('manageUsers'), validate(userValidation.deleteUser), deleteUser);
 
-module.exports = router;
+
+  export default router;
 
 /**
  * @swagger

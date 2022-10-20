@@ -22,4 +22,5 @@ export default {
     },
   },
   version: 1.0,
+  env: process.env.NODE_ENV,
 };
