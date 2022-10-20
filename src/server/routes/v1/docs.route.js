@@ -7,7 +7,7 @@ const router = Router();
 
 const specs = swaggerJsdoc({
   definition: swaggerDef,
-  apis: ['src/docs/*.yml', 'src/routes/v1/*.js'],
+  apis: ['src/server/docs/*.yml', 'src/server/routes/v1/*.js'],
 });
 
 router.use('/', swaggerUi.serve);

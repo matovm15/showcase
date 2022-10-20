@@ -39,6 +39,59 @@ components:
         refresh:
           $ref: '#/components/schemas/Token'
 
+    Gig:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        status:
+          type: string
+          enum: [open, closed]
+        duration:
+          type: string
+        service_provider:
+          type: list
+          items:
+            $ref: '#/components/schemas/Service'
+        user:
+          $ref: '#/components/schemas/User'
+      example:
+        id: 5ebac534954b54139806c112
+        title: fake title
+        description: fake description
+        price: 100
+        location: fake location
+        date: 2020-05-12T16:18:04.793Z
+        user:
+          id: 5ebac534954b54139806c112
+          email: 'fake@email.com'
+          name: fake name
+          role: user
+
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        skills:
+          type: list
+          items:
+            type: string
+        
+      example:
+        id: 5ebac534954b54139806c112
+        name: fake name
+        skills: [fake skill 1, fake skill 2]
+        
+
     Error:
       type: object
       properties:
