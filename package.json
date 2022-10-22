@@ -52,7 +52,10 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "faker": "^6.6.6",
     "mocha": "^9.2.2",
-    "nodemon": "^2.0.16"
+    "node-mocks-http": "^1.11.0",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.1.6"
   }
 }

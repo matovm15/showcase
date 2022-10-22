@@ -1,20 +1,22 @@
-const request = require('supertest');
-const faker = require('faker');
-const httpStatus = require('http-status');
-const httpMocks = require('node-mocks-http');
-const moment = require('moment');
-const bcrypt = require('bcryptjs');
-const app = require('../../src/app');
-const config = require('../../src/config/config');
-const auth = require('../../src/middlewares/auth');
-const { tokenService, emailService } = require('../../src/services');
-const ApiError = require('../../src/utils/ApiError');
-const setupTestDB = require('../utils/setupTestDB');
-const { User, Token } = require('../../src/models');
-const { roleRights } = require('../../src/config/roles');
-const { tokenTypes } = require('../../src/config/tokens');
-const { userOne, admin, insertUsers } = require('../fixtures/user.fixture');
-const { userOneAccessToken, adminAccessToken } = require('../fixtures/token.fixture');
+import request from'supertest'
+import faker from'faker'
+import httpStatus from'http-status'
+import httpMocks from'node-mocks-http'
+import moment from'moment'
+import bcrypt from'bcryptjs'
+import app from'../../app.js'
+import config from'../../config/config.js'
+import auth from'../../middlewares/auth.js'
+import { tokenService, emailService } from "../../services/index.js"
+import ApiError from'../../utils/ApiError.js'
+import setupTestDB from'../utils/setupTestDB'
+import { User, Token } from'../../models/index.js'
+import { roleRights } from'../../config/roles.js'
+import { tokenTypes } from'../../config/tokens.js'
+import { userOne, admin, insertUsers } from'../fixtures/user.fixture.js'
+import { userOneAccessToken, adminAccessToken } from'../fixtures/token.fixture.js'
+
+// yarn add 
 
 setupTestDB();
 
