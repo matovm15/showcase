@@ -1,6 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import path from 'path';
 import xss from 'xss-clean';
 import compression from 'compression';
 import passport from 'passport';
@@ -16,11 +17,17 @@ import { errorConverter, errorHandler } from './middlewares/error.js';
 import ApiError from './utils/ApiError.js';
 
 const app = express();
+global.__dirname = path.resolve();
 
 if (config.env !== 'test') {
   app.use(morgan.successHandler);
   app.use(morgan.errorHandler);
 }
+
+// template engine setup
+app.set('view engine', 'ejs'); 
+app.set('views', path.join(__dirname, 'src/server/views'));
+
 
 // set security HTTP headers
 app.use(helmet());
@@ -48,6 +55,10 @@ app.use(cookieParser());
 // jwt authentication
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
 // limit repeated failed requests to auth endpoints
 if (config.env === 'production') {
