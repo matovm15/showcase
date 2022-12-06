@@ -9,8 +9,15 @@ import ApiError from '../utils/ApiError.js';
  * @throws {ApiError}
  *
  */
-const createProfile = async (profileBody) => {
-  return Profile.create(profileBody);
+const createProfile = async (profileBody, id) => {
+  return Profile.create({
+    user: id,
+    title: profileBody.title,
+    avatar: profileBody.avatar,
+    skills: profileBody.skills,
+    bio: profileBody.bio,
+    fee: profileBody.fee,
+  });
 };
 
 /**

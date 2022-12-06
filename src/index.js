@@ -1,7 +1,8 @@
-import dotenv from "dotenv";
-import chalk from "chalk";
-import app from "./server/app.js";
-import DB from "./server/config/db.js";
+import dotenv from 'dotenv';
+import chalk from 'chalk';
+import app from './server/app.js';
+import DB from './server/config/db.js';
+// import { seedData } from './server/seed.js';
 
 dotenv.config();
 
@@ -19,3 +20,5 @@ DB()
   .catch((err) => {
     console.log(chalk.red(`Database connection failed: ${err}`));
   });
+
+// seedData();

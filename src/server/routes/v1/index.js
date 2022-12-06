@@ -29,7 +29,7 @@ const gigsRoutes = [
 
 const profileRoutes = [
   {
-    path: '/profiles',
+    path: '/profile',
     route: profileRoute,
   },
 ];

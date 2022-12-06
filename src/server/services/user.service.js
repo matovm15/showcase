@@ -1,7 +1,7 @@
-import httpStatus from "http-status";
-import bcrypt from "bcryptjs";
-import { User } from "../models/index.js";
-import ApiError from "../utils/ApiError.js";
+import httpStatus from 'http-status';
+import bcrypt from 'bcryptjs';
+import { User } from '../models/index.js';
+import ApiError from '../utils/ApiError.js';
 
 /**
  * Create a user
@@ -12,7 +12,17 @@ const createUser = async (userBody) => {
   if (await User.isEmailTaken(userBody.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
-  return User.create(userBody);
+
+  // Creating new password with bcrypt
+
+  const newPassword = await bcrypt.hash(userBody.password, 12);
+
+  return User.create({
+    name: userBody.first_name + ' ' + userBody.last_name,
+    email: userBody.email,
+    role: userBody.role,
+    password: newPassword,
+  });
 };
 
 /**
@@ -79,7 +89,6 @@ const deleteUserById = async (userId) => {
   await user.remove();
   return user;
 };
-
 
 export const userService = {
   createUser,

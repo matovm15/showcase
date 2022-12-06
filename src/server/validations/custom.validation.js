@@ -6,7 +6,7 @@ const objectId = (value, helpers) => {
 };
 
 const password = (value, helpers) => {
-  if (value.length < 8) {
+  if (value.length < 1) {
     return helpers.message('password must be at least 8 characters');
   }
   if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) {
@@ -15,7 +15,4 @@ const password = (value, helpers) => {
   return value;
 };
 
-export {
-  objectId,
-  password,
-};
+export { objectId, password };

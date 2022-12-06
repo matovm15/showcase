@@ -17,4 +17,6 @@ router
   .patch(auth('manageProfiles'), validate(profileValidation.updateProfile), profileController.updateProfileById)
   .delete(auth('manageProfiles'), validate(profileValidation.deleteProfile), profileController.deleteProfileById);
 
+router.route('/create/:id').post(validate(profileValidation.createProfile), profileController.createProfile);
+
 export default router;

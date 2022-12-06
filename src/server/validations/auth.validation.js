@@ -1,11 +1,14 @@
 import Joi from 'joi';
-import { password } from "./custom.validation.js";
+import { password } from './custom.validation.js';
 
 const register = {
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().custom(password),
-    name: Joi.string().required(),
+    confirmPassword: Joi.any().valid(Joi.ref('password')).required(),
+    first_name: Joi.string().required(),
+    last_name: Joi.string().required(),
+    role: Joi.string().required(),
   }),
 };
 

@@ -1,18 +1,19 @@
-import express from "express";
-import helmet from "helmet";
-import cors from "cors";
-import xss from "xss-clean";
-import compression from "compression";
-import passport from "passport";
-import cookieParser from "cookie-parser";
-import mongoSanitize from "express-mongo-sanitize";
-import httpStatus from "http-status";import config from "./config/config.js";
-import morgan from "./config/morgan.js";
-import { jwtStrategy } from "./config/passport.js";
-import authLimiter from "./middlewares/rateLimiter.js";
-import routes from "./routes/v1/index.js";
-import { errorConverter, errorHandler } from "./middlewares/error.js";
-import ApiError from "./utils/ApiError.js";
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import xss from 'xss-clean';
+import compression from 'compression';
+import passport from 'passport';
+import cookieParser from 'cookie-parser';
+import mongoSanitize from 'express-mongo-sanitize';
+import httpStatus from 'http-status';
+import config from './config/config.js';
+import morgan from './config/morgan.js';
+import { jwtStrategy } from './config/passport.js';
+import authLimiter from './middlewares/rateLimiter.js';
+import routes from './routes/v1/index.js';
+import { errorConverter, errorHandler } from './middlewares/error.js';
+import ApiError from './utils/ApiError.js';
 
 const app = express();
 
@@ -66,6 +67,5 @@ app.use(errorConverter);
 
 // handle error
 app.use(errorHandler);
-
 
 export default app;

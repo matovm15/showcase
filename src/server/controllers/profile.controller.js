@@ -5,7 +5,8 @@ import ApiError from '../utils/ApiError.js';
 import { profileService } from '../services/index.js';
 
 const createProfile = catchAsync(async (req, res) => {
-  const profile = await profileService.createProfile(req.body);
+  const { id } = req.params;
+  const profile = await profileService.createProfile(req.body, id);
   res.status(httpStatus.CREATED).send(profile);
 });
 

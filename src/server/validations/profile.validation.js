@@ -4,7 +4,10 @@ import { objectId } from './custom.validation.js';
 const createProfile = {
   body: Joi.object().keys({
     user: Joi.string().required().custom(objectId),
+    title: Joi.string().required(),
     avatar: Joi.string().required(),
+    bio: Joi.string().required(),
+    skills: Joi.array().required(),
     services: Joi.array().items(Joi.string().custom(objectId)),
     work_experience: Joi.array().items(
       Joi.object().keys({
@@ -72,17 +75,16 @@ const updateProfile = {
     .min(1),
 };
 
-
 const deleteProfile = {
-    params: Joi.object().keys({
-        profileId: Joi.string().custom(objectId),
-    }),
+  params: Joi.object().keys({
+    profileId: Joi.string().custom(objectId),
+  }),
 };
 
 export default {
-    createProfile,
-    getProfiles,
-    getProfile,
-    updateProfile,
-    deleteProfile,
+  createProfile,
+  getProfiles,
+  getProfile,
+  updateProfile,
+  deleteProfile,
 };

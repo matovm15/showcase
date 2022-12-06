@@ -1,9 +1,10 @@
-import httpStatus from "http-status";
-import { tokenService } from "./token.service.js";
-import { userService } from "./user.service.js";
-import { Token } from "../models/index.js";
-import ApiError from "../utils/ApiError.js";
-import { tokenTypes } from "../config/tokens.js";
+import httpStatus from 'http-status';
+import { tokenService } from './token.service.js';
+import { userService } from './user.service.js';
+import { Token } from '../models/index.js';
+import ApiError from '../utils/ApiError.js';
+import bcrypt from 'bcryptjs';
+import { tokenTypes } from '../config/tokens.js';
 
 /**
  * Login with username and password
@@ -13,7 +14,10 @@ import { tokenTypes } from "../config/tokens.js";
  */
 const loginUserWithEmailAndPassword = async (email, password) => {
   const user = await userService.getUserByEmail(email);
-  if (!user || !(await user.isPasswordMatch(password))) {
+
+  const isCorrect = await bcrypt.compare(password, user.password);
+
+  if (!user || !isCorrect) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
   }
   return user;
