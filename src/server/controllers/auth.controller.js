@@ -8,13 +8,6 @@ const register = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send({ user, tokens });
 });
 
-// const register = async (req, res) => {
-//   try {
-//     console.log(req.body);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;

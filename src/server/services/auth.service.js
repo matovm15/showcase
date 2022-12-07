@@ -13,11 +13,14 @@ import { tokenTypes } from '../config/tokens.js';
  * @returns {Promise<User>}
  */
 const loginUserWithEmailAndPassword = async (email, password) => {
+  
   const user = await userService.getUserByEmail(email);
 
-  const isCorrect = await bcrypt.compare(password, user.password);
+  if(!user) throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
 
-  if (!user || !isCorrect) {
+  const isCorrect = await user.isPasswordMatch(password);
+
+  if (!isCorrect) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
   }
   return user;

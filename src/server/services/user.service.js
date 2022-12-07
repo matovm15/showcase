@@ -13,15 +13,11 @@ const createUser = async (userBody) => {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
 
-  // Creating new password with bcrypt
-
-  const newPassword = await bcrypt.hash(userBody.password, 12);
-
   return User.create({
     name: userBody.first_name + ' ' + userBody.last_name,
     email: userBody.email,
     role: userBody.role,
-    password: newPassword,
+    password: userBody.password,
   });
 };
 
