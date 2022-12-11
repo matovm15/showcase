@@ -11,6 +11,8 @@ router
   .post(auth('manageProfiles'), validate(profileValidation.createProfile), profileController.createProfile)
   .get(auth('getProfiles'), validate(profileValidation.getProfiles), profileController.getProfiles);
 
+router.route('/me').get(auth('getProfile'), validate(profileValidation.getProfile), profileController.getProfile);
+
 router
   .route('/:profileId')
   .get(auth('getProfiles'), validate(profileValidation.getProfile), profileController.getProfileById)

@@ -100,6 +100,10 @@ const getProfileForUser = async (userId, profileId) => {
   return profile;
 };
 
+const getProfileByUserId = async (userId) => {
+  return Profile.findOne({ user: userId });
+};
+
 export const profileService = {
   createProfile,
   queryProfiles,
@@ -107,4 +111,5 @@ export const profileService = {
   updateProfileById,
   deleteProfileById,
   getProfileForUser,
+  getProfileByUserId,
 };

@@ -17,6 +17,15 @@ const getProfiles = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+// get profile for current user
+const getProfile = catchAsync(async (req, res) => {
+  const profile = await profileService.getProfileByUserId(req.user.id);
+  if (!profile) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Profile not found');
+  }
+  res.send(profile);
+});
+
 const getProfileById = catchAsync(async (req, res) => {
   const profile = await profileService.getProfileById(req.params.profileId);
   if (!profile) {
@@ -41,4 +50,5 @@ export const profileController = {
   getProfileById,
   updateProfileById,
   deleteProfileById,
+  getProfile,
 };
