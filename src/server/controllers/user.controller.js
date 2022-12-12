@@ -1,12 +1,18 @@
-import httpStatus from "http-status";
-import pick from "../utils/pick.js";
-import catchAsync from "../utils/catchAsync.js";
-import ApiError from "../utils/ApiError.js";
-import { userService } from "../services/index.js";
+import httpStatus from 'http-status';
+import pick from '../utils/pick.js';
+import catchAsync from '../utils/catchAsync.js';
+import ApiError from '../utils/ApiError.js';
+import { userService } from '../services/index.js';
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
   res.status(httpStatus.CREATED).send(user);
+});
+
+const getUserViaToken = catchAsync(async (req, res) => {
+  const { token } = req.params;
+  const userToken = await userService.getUserByToken(token);
+  res.send(userToken.user.toString());
 });
 
 const getUsers = catchAsync(async (req, res) => {
@@ -34,10 +40,4 @@ const deleteUser = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
-export {
-  createUser,
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser,
-};
+export { createUser, getUsers, getUser, updateUser, deleteUser, getUserViaToken };

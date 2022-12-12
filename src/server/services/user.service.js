@@ -1,6 +1,6 @@
 import httpStatus from 'http-status';
 import bcrypt from 'bcryptjs';
-import { User } from '../models/index.js';
+import { User, Token } from '../models/index.js';
 import ApiError from '../utils/ApiError.js';
 
 /**
@@ -42,6 +42,15 @@ const queryUsers = async (filter, options) => {
  */
 const getUserById = async (id) => {
   return User.findById(id);
+};
+
+/**
+ * Get user by token
+ * @param {string} token
+ * @returns {Promise<User>}
+ */
+const getUserByToken = async (token) => {
+  return Token.findOne({ token: token });
 };
 
 /**
@@ -90,6 +99,7 @@ export const userService = {
   createUser,
   queryUsers,
   getUserById,
+  getUserByToken,
   getUserByEmail,
   updateUserById,
   deleteUserById,

@@ -1,7 +1,7 @@
 const allRoles = {
   user: ['getProfile'],
   admin: ['getUsers', 'manageUsers', 'getProfiles', 'manageProfiles'],
-  freelancer: ['getProfile', 'manageProfile'],
+  freelancer: ['getProfile', 'manageProfile', 'getUserViaToken'],
   client: [],
 };
 
