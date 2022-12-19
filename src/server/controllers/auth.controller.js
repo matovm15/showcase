@@ -1,6 +1,7 @@
 import httpStatus from 'http-status';
 import catchAsync from '../utils/catchAsync.js';
 import { authService, userService, tokenService, emailService } from '../services/index.js';
+import Profile from '../models/profile.model.js';
 
 const register = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -8,6 +9,10 @@ const register = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send({ user, tokens });
 });
 
+const createProfile = catchAsync(async (req, res) => {
+  await authService.createProfile(req.body);
+  res.status(httpStatus.CREATED);
+});
 
 const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
@@ -57,4 +62,5 @@ export default {
   resetPassword,
   sendVerificationEmail,
   verifyEmail,
+  createProfile,
 };

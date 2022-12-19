@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import { tokenService } from './token.service.js';
 import { userService } from './user.service.js';
-import { Token } from '../models/index.js';
+import { Token, Profile } from '../models/index.js';
 import ApiError from '../utils/ApiError.js';
 import bcrypt from 'bcryptjs';
 import { tokenTypes } from '../config/tokens.js';
@@ -13,10 +13,9 @@ import { tokenTypes } from '../config/tokens.js';
  * @returns {Promise<User>}
  */
 const loginUserWithEmailAndPassword = async (email, password) => {
-  
   const user = await userService.getUserByEmail(email);
 
-  if(!user) throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
+  if (!user) throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
 
   const isCorrect = await user.isPasswordMatch(password);
 
@@ -97,10 +96,21 @@ const verifyEmail = async (verifyEmailToken) => {
   }
 };
 
+const createProfile = async (body) => {
+  try {
+    console.log(body);
+    Profile.create(body);
+  } catch (error) {
+    console.log(error);
+    throw new ApiError(httpStatus['500_CLASS'], 'Server Error');
+  }
+};
+
 export const authService = {
   loginUserWithEmailAndPassword,
   logout,
   refreshAuth,
   resetPassword,
   verifyEmail,
+  createProfile,
 };
