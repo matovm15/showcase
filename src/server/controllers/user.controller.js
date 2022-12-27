@@ -9,12 +9,6 @@ const createUser = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(user);
 });
 
-const getUserViaToken = catchAsync(async (req, res) => {
-  const { token } = req.params;
-  const userToken = await userService.getUserByToken(token);
-  res.send(userToken.user.toString());
-});
-
 const getUsers = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
@@ -40,4 +34,4 @@ const deleteUser = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
-export { createUser, getUsers, getUser, updateUser, deleteUser, getUserViaToken };
+export { createUser, getUsers, getUser, updateUser, deleteUser };

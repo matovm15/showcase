@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { Profile } from '../models/index.js';
+import { Profile, Token } from '../models/index.js';
 import ApiError from '../utils/ApiError.js';
 
 /**
@@ -45,6 +45,15 @@ const queryProfiles = async (filter, options) => {
  */
 const getProfileById = async (id) => {
   return Profile.findById(id);
+};
+
+/**
+ * Get user by token
+ * @param {string} token
+ * @returns {Promise<User>}
+ */
+const getUserByToken = async (token) => {
+  return Token.findOne({ token: token });
 };
 
 /**
@@ -112,4 +121,5 @@ export const profileService = {
   deleteProfileById,
   getProfileForUser,
   getProfileByUserId,
+  getUserByToken,
 };

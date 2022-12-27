@@ -25,9 +25,8 @@ if (config.env !== 'test') {
 }
 
 // template engine setup
-app.set('view engine', 'ejs'); 
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/server/views'));
-
 
 // set security HTTP headers
 app.use(helmet());
@@ -78,5 +77,8 @@ app.use(errorConverter);
 
 // handle error
 app.use(errorHandler);
+
+// adding request entity size limit
+app.use(express.json({ limit: '50mb' }));
 
 export default app;

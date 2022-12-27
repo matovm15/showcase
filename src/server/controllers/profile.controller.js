@@ -17,6 +17,14 @@ const getProfiles = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+// get user via token
+const getUserViaToken = catchAsync(async (req, res) => {
+  const { token } = req.params;
+  const userToken = await profileService.getUserByToken(token);
+  const id = userToken.user.toString();
+  res.json({ id });
+});
+
 // get profile for current user
 const getProfile = catchAsync(async (req, res) => {
   const profile = await profileService.getProfileByUserId(req.user.id);
@@ -51,4 +59,5 @@ export const profileController = {
   updateProfileById,
   deleteProfileById,
   getProfile,
+  getUserViaToken,
 };

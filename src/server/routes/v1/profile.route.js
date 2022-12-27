@@ -21,4 +21,8 @@ router
 
 router.route('/create/:id').post(validate(profileValidation.createProfile), profileController.createProfile);
 
+router.post('/create-profile', profileController.createProfile);
+
+router.get('/token/:token', profileController.getUserViaToken);
+
 export default router;
