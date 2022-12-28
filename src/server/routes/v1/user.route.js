@@ -17,6 +17,8 @@ router
   .patch(auth('manageUsers'), validate(userValidation.updateUser), updateUser)
   .delete(auth('manageUsers'), validate(userValidation.deleteUser), deleteUser);
 
+router.route('/me').get(auth('getUser'), validate(userValidation.getCurrentUser), getUser);
+
 export default router;
 
 /**

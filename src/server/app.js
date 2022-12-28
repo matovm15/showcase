@@ -78,7 +78,4 @@ app.use(errorConverter);
 // handle error
 app.use(errorHandler);
 
-// adding request entity size limit
-app.use(express.json({ limit: '50mb' }));
-
 export default app;

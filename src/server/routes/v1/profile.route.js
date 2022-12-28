@@ -8,7 +8,7 @@ const router = Router();
 
 router
   .route('/')
-  .post(auth('manageProfiles'), validate(profileValidation.createProfile), profileController.createProfile)
+  .post(auth('manageProfiles, manageProfile'), validate(profileValidation.createProfile), profileController.createProfile)
   .get(auth('getProfiles'), validate(profileValidation.getProfiles), profileController.getProfiles);
 
 router.route('/me').get(auth('getProfile'), validate(profileValidation.getProfile), profileController.getProfile);
@@ -19,10 +19,5 @@ router
   .patch(auth('manageProfiles'), validate(profileValidation.updateProfile), profileController.updateProfileById)
   .delete(auth('manageProfiles'), validate(profileValidation.deleteProfile), profileController.deleteProfileById);
 
-router.route('/create/:id').post(validate(profileValidation.createProfile), profileController.createProfile);
-
-router.post('/create-profile', profileController.createProfile);
-
-router.get('/token/:token', profileController.getUserViaToken);
 
 export default router;

@@ -26,6 +26,11 @@ const getUser = {
   }),
 };
 
+const getCurrentUser = {
+  params: Joi.object().keys({}),
+};
+
+
 const updateUser = {
   params: Joi.object().keys({
     userId: Joi.required().custom(objectId),
@@ -51,4 +56,5 @@ export default {
   getUser,
   updateUser,
   deleteUser,
+  getCurrentUser,
 };
