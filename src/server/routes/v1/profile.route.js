@@ -19,5 +19,8 @@ router
   .patch(auth('manageProfiles'), validate(profileValidation.updateProfile), profileController.updateProfileById)
   .delete(auth('manageProfiles'), validate(profileValidation.deleteProfile), profileController.deleteProfileById);
 
+router.route('/token/:token').get(profileController.getUserViaToken);
+
+router.route('/create-profile').post(profileController.createProfile);
 
 export default router;

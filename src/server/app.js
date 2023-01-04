@@ -32,10 +32,10 @@ app.set('views', path.join(__dirname, 'src/server/views'));
 app.use(helmet());
 
 // parse json request body
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 // parse urlencoded request body
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // sanitize request data
 app.use(xss());
